@@ -217,3 +217,109 @@ uvx mcp-google-sheets==0.6.0
 ```
 
 If the server starts without errors, the credentials and folder access are working.
+
+---
+
+## io.github.pulsemcp/playwright-stealth
+
+**Server:** `io.github.pulsemcp/playwright-stealth`
+**Repository:** [pulsemcp/mcp-servers](https://github.com/pulsemcp/mcp-servers) (subfolder `experimental/playwright-stealth`)
+
+### Prerequisites
+
+- **Node.js 18+** and npm (provides the `npx` command)
+- **Playwright browsers** — installed automatically on first run, or manually with:
+  ```bash
+  npx playwright install chromium
+  ```
+
+### Environment variables
+
+| Variable | Required | Description |
+|---|---|---|
+| `STEALTH_MODE` | No | Enable anti-detection measures (default: `false`) |
+| `HEADLESS` | No | Run browser without visible window (default: `true`) |
+| `TIMEOUT` | No | Default action timeout in ms (default: `30000`) |
+| `NAVIGATION_TIMEOUT` | No | Page navigation timeout in ms (default: `60000`) |
+| `SCREENSHOT_STORAGE_PATH` | No | Directory for screenshots (default: `/tmp/playwright-screenshots`) |
+| `PROXY_URL` | No | Proxy server URL |
+| `PROXY_USERNAME` | No | Proxy auth username |
+| `PROXY_PASSWORD` | No | Proxy auth password |
+
+### Verify setup
+
+```bash
+npx -y playwright-stealth-mcp-server@0.0.9
+```
+
+If the server starts without errors, Playwright is installed and working.
+
+---
+
+## com.amazonaws/ecs-mcp
+
+**Server:** `com.amazonaws/ecs-mcp`
+**Docs:** [Amazon ECS MCP Server](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-mcp-getting-started.html)
+**Proxy:** [aws/mcp-proxy-for-aws](https://github.com/aws/mcp-proxy-for-aws) (PyPI: `mcp-proxy-for-aws`)
+
+### How it works
+
+The ECS MCP server is a remote AWS-hosted service at `https://ecs-mcp.{region}.api.aws/mcp`. You connect to it through the `mcp-proxy-for-aws` local proxy, which handles AWS SigV4 request signing using your local AWS credentials.
+
+### Prerequisites
+
+- **Python 3.10+** and [uv](https://docs.astral.sh/uv/getting-started/installation/) (provides the `uvx` command)
+- **AWS CLI** configured with credentials that have ECS access
+- An **AWS account** with ECS clusters you want to monitor
+
+### IAM permissions
+
+The credentials need the following permissions:
+
+**MCP-specific:**
+- `ecs-mcp:InvokeReadOnlyTools`
+- `ecs-mcp:UseMcp`
+
+**ECS read-only:**
+- `ecs:List*` and `ecs:Describe*` actions
+
+**Supporting services (for full troubleshooting):**
+- `logs:GetLogEvents`, `logs:FilterLogEvents` (CloudWatch Logs)
+- `elasticloadbalancing:Describe*` (ELB)
+- `ec2:Describe*` (VPC/networking)
+- `ecr:Describe*` (container images)
+
+### AWS credentials setup
+
+Choose one approach:
+
+1. **AWS CLI profiles** (recommended for local dev):
+   - Run `aws configure` or `aws configure sso` to set up a profile
+   - Set `AWS_PROFILE` to the profile name
+
+2. **Static credentials** (for CI):
+   - Set `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, and optionally `AWS_SESSION_TOKEN`
+
+### Environment variables
+
+| Variable | Required | Description |
+|---|---|---|
+| `AWS_PROFILE` | No | AWS CLI profile name |
+| `AWS_DEFAULT_REGION` | No | AWS region (default: `us-east-1`) |
+| `AWS_ACCESS_KEY_ID` | No | Access key for static credential auth |
+| `AWS_SECRET_ACCESS_KEY` | No | Secret key for static credential auth |
+| `AWS_SESSION_TOKEN` | No | Session token for temporary credentials |
+
+At least one authentication method must be configured.
+
+### Verify setup
+
+```bash
+# Confirm AWS credentials are working
+aws sts get-caller-identity
+
+# Confirm ECS access
+aws ecs list-clusters --region us-east-1
+```
+
+If both commands succeed, the server will work.

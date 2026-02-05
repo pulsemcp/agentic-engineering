@@ -339,5 +339,198 @@
         ]
       }
     ]
+  },
+  {
+    "$schema": "https://raw.githubusercontent.com/modelcontextprotocol/static/main/schemas/2025-12-11/server.schema.json",
+    "name": "io.github.pulsemcp/playwright-stealth",
+    "title": "Playwright Stealth",
+    "description": "Browser automation with Playwright and optional stealth mode to bypass anti-bot protection.",
+    "version": "0.0.9",
+    "websiteUrl": "https://github.com/pulsemcp/mcp-servers/tree/main/experimental/playwright-stealth",
+    "repository": {
+      "url": "https://github.com/pulsemcp/mcp-servers",
+      "source": "github",
+      "id": "982277834",
+      "subfolder": "experimental/playwright-stealth"
+    },
+    "packages": [
+      {
+        "registryType": "npm",
+        "identifier": "playwright-stealth-mcp-server",
+        "version": "0.0.9",
+        "runtimeHint": "npx",
+        "transport": {
+          "type": "stdio"
+        },
+        "environmentVariables": [
+          {
+            "name": "STEALTH_MODE",
+            "description": "Enable anti-detection measures to bypass bot protection.",
+            "isRequired": false,
+            "default": "false"
+          },
+          {
+            "name": "HEADLESS",
+            "description": "Run browser in headless mode (no visible window).",
+            "isRequired": false,
+            "default": "true"
+          },
+          {
+            "name": "TIMEOUT",
+            "description": "Default action timeout in milliseconds.",
+            "isRequired": false,
+            "default": "30000"
+          },
+          {
+            "name": "NAVIGATION_TIMEOUT",
+            "description": "Page navigation timeout in milliseconds.",
+            "isRequired": false,
+            "default": "60000"
+          },
+          {
+            "name": "SCREENSHOT_STORAGE_PATH",
+            "description": "Directory for storing screenshots.",
+            "isRequired": false,
+            "default": "/tmp/playwright-screenshots",
+            "format": "filepath"
+          },
+          {
+            "name": "STEALTH_USER_AGENT",
+            "description": "Custom User-Agent string. Uses browser default if not set.",
+            "isRequired": false
+          },
+          {
+            "name": "STEALTH_MASK_LINUX",
+            "description": "Mask Linux as Windows in User-Agent string.",
+            "isRequired": false,
+            "default": "true"
+          },
+          {
+            "name": "STEALTH_LOCALE",
+            "description": "Custom locale for Accept-Language header.",
+            "isRequired": false,
+            "default": "en-US,en"
+          },
+          {
+            "name": "IGNORE_HTTPS_ERRORS",
+            "description": "Ignore HTTPS certificate errors.",
+            "isRequired": false,
+            "default": "true"
+          },
+          {
+            "name": "PROXY_URL",
+            "description": "Proxy server URL.",
+            "isRequired": false
+          },
+          {
+            "name": "PROXY_USERNAME",
+            "description": "Proxy authentication username.",
+            "isRequired": false
+          },
+          {
+            "name": "PROXY_PASSWORD",
+            "description": "Proxy authentication password.",
+            "isRequired": false,
+            "isSecret": true
+          },
+          {
+            "name": "PROXY_BYPASS",
+            "description": "Comma-separated list of hosts to bypass the proxy.",
+            "isRequired": false
+          },
+          {
+            "name": "BROWSER_PERMISSIONS",
+            "description": "Comma-separated list of browser permissions to grant.",
+            "isRequired": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "$schema": "https://raw.githubusercontent.com/modelcontextprotocol/static/main/schemas/2025-12-11/server.schema.json",
+    "name": "com.amazonaws/ecs-mcp",
+    "title": "Amazon ECS",
+    "description": "Read-only monitoring and troubleshooting for Amazon ECS deployments, tasks, logs, and networking.",
+    "version": "1.1.6",
+    "websiteUrl": "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-mcp-getting-started.html",
+    "repository": {
+      "url": "https://github.com/aws/mcp-proxy-for-aws",
+      "source": "github",
+      "id": "1063391017"
+    },
+    "packages": [
+      {
+        "registryType": "pypi",
+        "identifier": "mcp-proxy-for-aws",
+        "version": "1.1.6",
+        "runtimeHint": "uvx",
+        "transport": {
+          "type": "stdio"
+        },
+        "packageArguments": [
+          {
+            "type": "positional",
+            "valueHint": "endpoint",
+            "description": "ECS MCP server endpoint URL. Replace {region} with your AWS region (e.g., us-east-1).",
+            "value": "https://ecs-mcp.us-east-1.api.aws/mcp"
+          },
+          {
+            "type": "named",
+            "name": "--service",
+            "description": "AWS service name for SigV4 signing.",
+            "value": "ecs-mcp"
+          },
+          {
+            "type": "named",
+            "name": "--profile",
+            "description": "AWS CLI profile name to use for credentials.",
+            "isRequired": false
+          },
+          {
+            "type": "named",
+            "name": "--region",
+            "description": "AWS region for the ECS MCP server endpoint (e.g., us-east-1, us-west-2).",
+            "isRequired": false
+          },
+          {
+            "type": "named",
+            "name": "--read-only",
+            "description": "Disable write-permission tools. The ECS MCP server is already read-only, so this is optional.",
+            "isRequired": false
+          }
+        ],
+        "environmentVariables": [
+          {
+            "name": "AWS_PROFILE",
+            "description": "AWS CLI profile name. Alternative to the --profile argument.",
+            "isRequired": false
+          },
+          {
+            "name": "AWS_DEFAULT_REGION",
+            "description": "AWS region. Alternative to the --region argument.",
+            "isRequired": false
+          },
+          {
+            "name": "AWS_ACCESS_KEY_ID",
+            "description": "AWS access key for programmatic authentication.",
+            "isRequired": false,
+            "isSecret": true
+          },
+          {
+            "name": "AWS_SECRET_ACCESS_KEY",
+            "description": "AWS secret access key for programmatic authentication.",
+            "isRequired": false,
+            "isSecret": true
+          },
+          {
+            "name": "AWS_SESSION_TOKEN",
+            "description": "AWS session token for temporary credential authentication.",
+            "isRequired": false,
+            "isSecret": true
+          }
+        ]
+      }
+    ]
   }
 ]
