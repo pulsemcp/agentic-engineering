@@ -75,7 +75,7 @@
       "DRIVE_FOLDER_ID": "${GOOGLE_SHEETS_DRIVE_FOLDER_ID}"
     }
   },
-  "playwright-stealth": {
+  "pulsemcp-playwright": {
     "title": "Playwright",
     "description": "Use when you need to automate browser interactions or scrape pages. Execute Playwright code, take screenshots, and manage persistent browser sessions with optional stealth mode.",
     "type": "stdio",
