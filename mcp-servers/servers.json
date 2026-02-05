@@ -209,5 +209,135 @@
         ]
       }
     ]
+  },
+  {
+    "$schema": "https://raw.githubusercontent.com/modelcontextprotocol/static/main/schemas/2025-12-11/server.schema.json",
+    "name": "io.github.awslabs/aws-iac-mcp-server",
+    "title": "AWS Infrastructure as Code",
+    "description": "CloudFormation validation, compliance checking, CDK guidance, and deployment troubleshooting.",
+    "version": "1.0.11",
+    "websiteUrl": "https://awslabs.github.io/mcp/servers/aws-iac-mcp-server/",
+    "repository": {
+      "url": "https://github.com/awslabs/mcp",
+      "source": "github",
+      "id": "952238700",
+      "subfolder": "src/aws-iac-mcp-server"
+    },
+    "packages": [
+      {
+        "registryType": "pypi",
+        "identifier": "awslabs.aws-iac-mcp-server",
+        "version": "1.0.11",
+        "runtimeHint": "uvx",
+        "transport": {
+          "type": "stdio"
+        },
+        "environmentVariables": [
+          {
+            "name": "AWS_PROFILE",
+            "description": "Named AWS CLI profile to use for authentication.",
+            "isRequired": false
+          },
+          {
+            "name": "AWS_DEFAULT_REGION",
+            "description": "AWS region for API calls (e.g., us-east-1).",
+            "isRequired": false
+          },
+          {
+            "name": "AWS_ACCESS_KEY_ID",
+            "description": "AWS access key for programmatic authentication.",
+            "isRequired": false,
+            "isSecret": true
+          },
+          {
+            "name": "AWS_SECRET_ACCESS_KEY",
+            "description": "AWS secret access key for programmatic authentication.",
+            "isRequired": false,
+            "isSecret": true
+          },
+          {
+            "name": "AWS_SESSION_TOKEN",
+            "description": "AWS session token for temporary credential authentication.",
+            "isRequired": false,
+            "isSecret": true
+          },
+          {
+            "name": "FASTMCP_LOG_LEVEL",
+            "description": "Logging level for the FastMCP framework (e.g., ERROR, WARNING, INFO, DEBUG).",
+            "isRequired": false,
+            "default": "ERROR"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "$schema": "https://raw.githubusercontent.com/modelcontextprotocol/static/main/schemas/2025-12-11/server.schema.json",
+    "name": "io.github.xing5/mcp-google-sheets",
+    "title": "Google Sheets",
+    "description": "Read, create, and modify Google Sheets spreadsheets via the Google Sheets and Drive APIs.",
+    "version": "0.6.0",
+    "websiteUrl": "https://github.com/xing5/mcp-google-sheets",
+    "repository": {
+      "url": "https://github.com/xing5/mcp-google-sheets",
+      "source": "github",
+      "id": "952831973"
+    },
+    "packages": [
+      {
+        "registryType": "pypi",
+        "identifier": "mcp-google-sheets",
+        "version": "0.6.0",
+        "runtimeHint": "uvx",
+        "transport": {
+          "type": "stdio"
+        },
+        "packageArguments": [
+          {
+            "type": "named",
+            "name": "--include-tools",
+            "description": "Comma-separated list of tool names to enable. Reduces context usage when only a subset of the 19 tools is needed.",
+            "isRequired": false
+          }
+        ],
+        "environmentVariables": [
+          {
+            "name": "SERVICE_ACCOUNT_PATH",
+            "description": "Path to a Google Cloud Service Account JSON key file. Recommended for server/automation use.",
+            "isRequired": false,
+            "format": "filepath"
+          },
+          {
+            "name": "DRIVE_FOLDER_ID",
+            "description": "Google Drive folder ID to scope spreadsheet access. The service account must have access to this folder.",
+            "isRequired": false,
+            "placeholder": "1aBcDeFgHiJkLmNoPqRsTuVwXyZ"
+          },
+          {
+            "name": "CREDENTIALS_PATH",
+            "description": "Path to an OAuth 2.0 client credentials JSON file (for interactive/personal use).",
+            "isRequired": false,
+            "format": "filepath"
+          },
+          {
+            "name": "TOKEN_PATH",
+            "description": "Path to store the OAuth token file after authorization.",
+            "isRequired": false,
+            "format": "filepath"
+          },
+          {
+            "name": "CREDENTIALS_CONFIG",
+            "description": "Base64-encoded Google Cloud credential JSON. Alternative to file-based credential paths.",
+            "isRequired": false,
+            "isSecret": true
+          },
+          {
+            "name": "ENABLED_TOOLS",
+            "description": "Comma-separated list of tool names to enable. Alternative to the --include-tools argument.",
+            "isRequired": false
+          }
+        ]
+      }
+    ]
   }
 ]

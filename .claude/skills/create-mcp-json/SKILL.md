@@ -64,13 +64,13 @@ Reference the full mcp.json specification at: `docs/MCP_JSON.md` in this reposit
 
 #### Version pinning
 
-Always pin to a specific version when one is available in the server.json. This avoids supply chain attacks where a compromised latest version gets pulled automatically on every launch.
+**ALWAYS** pin to a specific version — never use `@latest`, `@^1.0.0`, or leave the version off. This avoids supply chain attacks where a compromised latest version gets pulled automatically on every launch.
 
-- **npm**: `@modelcontextprotocol/server-github@0.6.2` not `@modelcontextprotocol/server-github`
-- **pypi**: `weather-mcp-server==0.5.0` not `weather-mcp-server`
-- **oci**: `docker.io/mcp/server:1.0.2` (already versioned by tag)
+- **npm**: `@modelcontextprotocol/server-github@0.6.2` not `@modelcontextprotocol/server-github` or `@modelcontextprotocol/server-github@latest`
+- **pypi**: `weather-mcp-server==0.5.0` not `weather-mcp-server` or `weather-mcp-server@latest`
+- **oci**: `docker.io/mcp/server:1.0.2` not `docker.io/mcp/server:latest`
 
-If the server.json has no `version` field, note this in the output and suggest the user pin one manually.
+If the server.json has no `version` field, look it up on the package registry (PyPI, npm, etc.) to find the latest version and pin to that. Note the version you chose in the output.
 
 #### Args construction
 
