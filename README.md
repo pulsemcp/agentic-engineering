@@ -20,7 +20,7 @@ MCP is the standard interface for giving agents access to tools and data. It mat
 
 **Constraining.** MCP configurations let you control exactly what an agent can do in a given session. You can scope a server to read-only mode, filter which tools are exposed, limit access to specific resources, and template secrets through environment variables so credentials never touch the context window. This is how you make agents safe enough to run autonomously — not by hoping the model behaves, but by making dangerous actions structurally impossible in that session's configuration.
 
-With this combination of connecting and constraining agents can iterate their way to completion, and you constrain their access so the blast radius of mistakes is bounded.
+With this combination, agents can iterate their way to completion, and you constrain their access so the blast radius of mistakes is bounded.
 
 ## Running Claude Code
 
