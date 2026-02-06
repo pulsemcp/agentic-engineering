@@ -28,7 +28,7 @@ This repo contains three things:
 
 - **`mcp-servers/`** — a personal catalog of MCP server definitions (`servers.json`) and client configurations (`mcp.json`), plus setup docs and env var templates. This is where you define what servers exist and how to run them.
 - **`agents-md/`** — example `AGENTS.md` files that show how to configure agent behavior per project and per directory. These are the instructions agents read before touching your code: what commands to run, what patterns to follow, what mistakes to avoid.
-- **`.claude/skills/`** — skills that automate the catalog workflow: researching servers, generating validated definitions, producing client configs, and wiring them into a project.
+- **`skills/`** — example Claude Code skills for common development workflow steps: waiting for CI, reviewing PRs, testing in staging, performing releases. These are the kind of reusable, agent-executable procedures that tie everything together.
 
 The MCP server catalog is the core of the repo, so the rest of this section focuses on the two file formats that drive it.
 

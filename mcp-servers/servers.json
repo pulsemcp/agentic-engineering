@@ -549,7 +549,7 @@
     "packages": [
       {
         "registryType": "npm",
-        "identifier": "dynamodb-mcp-server",
+        "identifier": "aws-dynamodb-mcp-server",
         "version": "0.1.0",
         "runtimeHint": "npx",
         "transport": {
