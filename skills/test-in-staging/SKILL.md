@@ -20,7 +20,7 @@ Deploy the current branch to staging and run through verification steps to confi
 
 - The `gh` CLI must be installed and authenticated (`gh auth status` must succeed)
 - A staging deployment workflow must exist — confirm with `gh workflow list` and identify the correct workflow name. If none is found, stop and ask the user which workflow to use.
-- For browser-based verification: a Playwright MCP server must be available. If no Playwright tools are accessible, tell the user and skip only the browser-based checks (still run all `curl`-based checks).
+- For browser-based verification: a browser automation MCP server (e.g. Playwright) must be available. If no browser automation tools are accessible, tell the user and skip only the browser-based checks (still run all `curl`-based checks).
 - The staging environment URL must be known. If not provided and not discoverable from the repo, stop and ask the user for it.
 
 ## Steps
@@ -43,7 +43,7 @@ Poll until the run completes. If the deploy itself fails, inspect the logs with 
 
 ### 2. Run the verification checklist
 
-Work through each section below. For each item, actually perform the check — don't just reason about whether it should work. Use `curl` for API checks and the Playwright MCP server for anything that requires a browser.
+Work through each section below. For each item, actually perform the check — don't just reason about whether it should work. Use `curl` for API checks and a browser automation MCP server for anything that requires a browser.
 
 **When a check fails**: fix the underlying issue, commit, push, redeploy to staging, and re-run the failed check. Repeat until it passes. Do not skip ahead.
 
@@ -79,7 +79,7 @@ Work through each section below. For each item, actually perform the check — d
   ```bash
   curl -s https://<staging-url>/api/example | jq .
   ```
-- **UI changes**: use the Playwright MCP server to navigate to the page, interact with the changed elements, and confirm they render and behave correctly.
+- **UI changes**: use the browser automation MCP server to navigate to the page, interact with the changed elements, and confirm they render and behave correctly.
 - Compare actual behavior against what the PR description says should happen.
 
 ### Auth and permissions
@@ -107,7 +107,7 @@ Work through each section below. For each item, actually perform the check — d
 ### Cross-feature regression
 
 - Briefly check that the main flows adjacent to the changed area still work.
-- For UI: use Playwright to walk through one happy-path flow that touches the changed area.
+- For UI: use the browser automation MCP server to walk through one happy-path flow that touches the changed area.
 - For API: hit 2-3 related endpoints that weren't changed and confirm they still return expected results.
 
 ---
