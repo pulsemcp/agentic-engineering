@@ -330,7 +330,7 @@ If both commands succeed, the server will work.
 
 **Server:** `io.github.pulsemcp/dynamodb`
 **Repository:** [pulsemcp/mcp-servers](https://github.com/pulsemcp/mcp-servers) (subfolder `experimental/dynamodb`)
-**Status:** Experimental — npm package `aws-dynamodb-mcp-server` not yet published.
+**Package:** [`aws-dynamodb-mcp-server`](https://www.npmjs.com/package/aws-dynamodb-mcp-server) (npm)
 
 ### Prerequisites
 
@@ -414,7 +414,7 @@ If both commands succeed, the server will work.
 
 **Server:** `io.github.pulsemcp/s3`
 **Repository:** [pulsemcp/mcp-servers](https://github.com/pulsemcp/mcp-servers) (subfolder `experimental/s3`)
-**Status:** Experimental — npm package `s3-aws-mcp-server` not yet published.
+**Package:** [`s3-aws-mcp-server`](https://www.npmjs.com/package/s3-aws-mcp-server) (npm)
 
 ### Prerequisites
 

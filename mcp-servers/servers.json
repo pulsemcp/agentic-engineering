@@ -550,7 +550,7 @@
       {
         "registryType": "npm",
         "identifier": "aws-dynamodb-mcp-server",
-        "version": "0.1.0",
+        "version": "0.2.0",
         "runtimeHint": "npx",
         "transport": {
           "type": "stdio"
@@ -625,7 +625,7 @@
     "name": "io.github.pulsemcp/s3",
     "title": "AWS S3",
     "description": "S3 bucket and object operations with fine-grained tool access control and single-bucket mode.",
-    "version": "0.0.0",
+    "version": "0.0.1",
     "websiteUrl": "https://github.com/pulsemcp/mcp-servers/tree/main/experimental/s3",
     "repository": {
       "url": "https://github.com/pulsemcp/mcp-servers",
