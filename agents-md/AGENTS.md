@@ -1,6 +1,8 @@
-# AGENTS.md — Root Template
+# AGENTS.md — Root Example
 
-A template for the root-level `AGENTS.md` (or `CLAUDE.md`) in a project. Copy this file to your repo root and fill in the sections that apply. Delete sections that don't.
+> **This is not a template to copy and fill in.** It's an example of what a root-level AGENTS.md *could* look like when it's mature. The best AGENTS.md files are not written upfront — they're built line by line as you and your team observe agents making mistakes or lacking context. Start with an empty file. When an agent does something wrong because it didn't know X, or takes too long with windy workarounds, add X. When you find yourself repeating the same correction across sessions, write it down.
+>
+> Skim this to get a sense of the *kinds* of things that belong in an AGENTS.md, perhaps bootstrap yours with ideas you already know are likely (e.g. from your experience onboarding engineers), and don't take this as anything more than an inspirational example.
 
 ---
 

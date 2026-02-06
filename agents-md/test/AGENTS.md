@@ -1,4 +1,6 @@
-# AGENTS.md — Test Directory
+# AGENTS.md — Test Directory Example
+
+> **This is not a template to copy and fill in.** It's an example of what a directory-scoped AGENTS.md *could* look like for a `test/` directory. Don't start here — start with an empty file. When you notice agents writing tests in the wrong directory, add the structure table. When they mock internals, add the mocking policy. When they run the full suite and waste 10 minutes, add the "what NOT to run" section. Every line should exist because you watched an agent get it wrong without it.
 
 Guidance for agents working in the `test/` directory. This file is only loaded when an agent is operating on files within this directory, so it contains context that agents working elsewhere don't need.
 
