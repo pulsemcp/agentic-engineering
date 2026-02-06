@@ -1,5 +1,27 @@
 # Agentic Engineering
 
+## Principles
+
+Agentic coding is often only as good as the feedback loops it can use to inspect and verify completion of work. 
+
+### Verification in an agentic loop: assertion and observability
+
+There are two oft-missing components to a strong agentic loop:
+
+1. **Assertion** — the agent proves its work is correct. This means running tests, type checkers, linters, build steps, and any other pass/fail gate before moving on. The goal is a tight loop: write code, run checks, fix failures, repeat — all without human intervention.
+
+2. **Observability** — the agent can see what's actually happening at runtime - you empower it with debugging capabilities. Logs, error traces, deployment status, metrics — when an agent has access to this data, it can diagnose the real problem instead of guessing.
+
+### MCP's role: connecting and constraining
+
+MCP is the standard interface for giving agents access to tools and data. It matters here for two reasons:
+
+**Connecting.** MCP servers plug agents into your real infrastructure — databases, cloud APIs, CI/CD pipelines, monitoring systems — through a standardized protocol. Instead of fragile bash scripts and ad-hoc tool wrappers, you get structured tool definitions that are easy to reason about and designed for an LLM-forward era. This is what makes verification loops practical: the agent can call `create_database_index`, `check_deployment_status`, or `query_logs` as it identifies and fixes problems and builds net new functionality.
+
+**Constraining.** MCP configurations let you control exactly what an agent can do in a given session. You can scope a server to read-only mode, filter which tools are exposed, limit access to specific resources, and template secrets through environment variables so credentials never touch the context window. This is how you make agents safe enough to run autonomously — not by hoping the model behaves, but by making dangerous actions structurally impossible in that session's configuration.
+
+With this combination of connecting and constraining agents can iterate their way to completion, and you constrain their access so the blast radius of mistakes is bounded.
+
 ## Running Claude Code
 
 Create a `.env` file at the project root (it's gitignored) with your secrets, then use this to start a session:
