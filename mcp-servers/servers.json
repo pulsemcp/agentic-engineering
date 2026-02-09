@@ -893,7 +893,6 @@
     "packages": [
       {
         "registryType": "npm",
-        "registryBaseUrl": "https://registry.npmjs.org",
         "identifier": "@neondatabase/mcp-server-neon",
         "version": "0.6.5",
         "runtimeHint": "npx",
@@ -911,14 +910,6 @@
             "valueHint": "neon_api_key",
             "description": "Neon API key for authenticating API requests.",
             "isRequired": true,
-            "isSecret": true
-          }
-        ],
-        "environmentVariables": [
-          {
-            "name": "NEON_API_KEY",
-            "description": "Neon API key for authenticating API requests. Alternative to passing the key as a CLI argument.",
-            "isRequired": false,
             "isSecret": true
           }
         ]
@@ -957,7 +948,7 @@
         "headers": [
           {
             "name": "Authorization",
-            "description": "Bearer token for API key authentication. Required when not using OAuth.",
+            "description": "Bearer token for API key authentication (deprecated — prefer streamable-http). Required when not using OAuth.",
             "isRequired": false,
             "isSecret": true,
             "value": "Bearer {neon_api_key}",

@@ -568,7 +568,7 @@ If both commands return versions, the server will work.
 
 The Neon MCP server can be used in two ways:
 
-1. **Remote (recommended)** — connect to the hosted server at `https://mcp.neon.tech/mcp` via Streamable HTTP (or `https://mcp.neon.tech/sse` via SSE). Supports OAuth browser-based authorization or API key auth via the `Authorization` header.
+1. **Remote (recommended)** — connect to the hosted server at `https://mcp.neon.tech/mcp` via Streamable HTTP (or `https://mcp.neon.tech/sse` via SSE, deprecated). Supports OAuth browser-based authorization or API key auth via the `Authorization` header.
 
 2. **Local** — run the npm package `@neondatabase/mcp-server-neon` locally via `npx`. Requires a Neon API key passed as a CLI argument or via `NEON_API_KEY`.
 
@@ -583,7 +583,7 @@ The Neon MCP server can be used in two ways:
 
 | Variable | Required | Description |
 |---|---|---|
-| `NEON_API_KEY` | Yes (local) / No (remote with OAuth) | Neon API key for authentication |
+| `NEON_API_KEY` | Yes (local) / No (remote with OAuth) | Neon API key. The local server reads this as a CLI argument, not an env var — set it in your shell so `mcp.json` can substitute it into the args array. |
 
 ### Read-only mode
 
