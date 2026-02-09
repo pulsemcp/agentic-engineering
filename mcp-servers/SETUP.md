@@ -494,7 +494,7 @@ If both commands succeed, the server will work.
 
 ### Prerequisites
 
-- **Node.js v20.19+** (latest maintenance LTS) and npm (provides the `npx` command)
+- **Node.js v20.19+** or **v22.12+** (LTS releases) and npm (provides the `npx` command)
 - **Chrome** current stable version or newer
 
 No credentials or API keys are required — the server controls a local Chrome browser. See `servers.json` for the full list of environment variables and CLI flags.
@@ -516,7 +516,7 @@ google-chrome --remote-debugging-port=9222
 "C:\Program Files\Google\Chrome\Application\chrome.exe" --remote-debugging-port=9222
 ```
 
-On Chrome 144+, you can also enable remote debugging by navigating to `chrome://inspect/#remote-debugging` within Chrome, or by adding `--remote-debugging-port=9222` to your Chrome desktop shortcut.
+On Chrome 144+, you can also enable remote debugging by navigating to `chrome://inspect/#remote-debugging` within Chrome. Alternatively, on any Chrome version, you can add `--remote-debugging-port=9222` to your Chrome desktop shortcut.
 
 Once Chrome is running with remote debugging, the `--autoConnect` flag will automatically discover and connect to it (requires Chrome 144+). For older Chrome versions, use `--browserUrl http://localhost:9222` instead.
 
@@ -545,7 +545,7 @@ On macOS and Windows with Chrome already installed, no extra dependencies are ne
 node --version  # should be v20.19.0 or newer
 
 # Confirm Chrome is installed
-google-chrome --version || chromium --version
+google-chrome --version || chromium-browser --version
 ```
 
 If both commands return versions, the server will work.
