@@ -11,6 +11,14 @@ user-invocable: true
 
 # Wait for CI
 
+## Sequencing Checklist
+
+- [ ] Verify prerequisites (`gh auth status`, branch has an open PR)
+- [ ] Run `gh pr checks --watch --fail-fast`
+- [ ] If no checks reported, wait 30s and retry (up to 2 retries)
+- [ ] If still no checks, diagnose (merge conflicts, no matching workflows, GitHub outage)
+- [ ] Report result: CI passed, CI failed (with failing check details), or no checks expected
+
 Block until all GitHub Actions CI checks pass or fail on the current PR.
 
 ## Prerequisites

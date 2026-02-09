@@ -7,6 +7,17 @@ argument-hint: [server-name-or-url]
 
 # create-server-json
 
+## Sequencing Checklist
+
+- [ ] Fetch the latest schema from GitHub and save to `/tmp/server.schema.json`
+- [ ] Read the downloaded schema to understand valid fields and constraints
+- [ ] Check for an existing server.json on registry.modelcontextprotocol.io
+- [ ] Check for an existing server.json on pulsemcp.com/servers
+- [ ] Fetch any additional context provided by the user
+- [ ] Construct the `server.json` with top-level metadata, `packages`, and/or `remotes`
+- [ ] Validate the generated file against the schema using `ajv`
+- [ ] Fix any validation errors and re-validate until it passes
+
 Create a valid MCP Registry `server.json` file for an MCP server project. The user provided this context about the server:
 
 ```
