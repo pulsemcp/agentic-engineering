@@ -912,7 +912,7 @@
         ],
         "variables": {
           "langfuse_host": {
-            "description": "Langfuse instance hostname. Use cloud.langfuse.com (EU), us.cloud.langfuse.com (US), or your self-hosted domain.",
+            "description": "Langfuse instance hostname. Use cloud.langfuse.com (EU), us.cloud.langfuse.com (US), hipaa.cloud.langfuse.com (HIPAA), or your self-hosted domain.",
             "default": "cloud.langfuse.com",
             "isRequired": true,
             "placeholder": "cloud.langfuse.com"
