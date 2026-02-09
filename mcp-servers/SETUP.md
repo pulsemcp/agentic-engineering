@@ -552,6 +552,116 @@ If both commands return versions, the server will work.
 
 ---
 
+## io.github.neondatabase/mcp-server-neon
+
+**Server:** `io.github.neondatabase/mcp-server-neon`
+**Repository:** [neondatabase/mcp-server-neon](https://github.com/neondatabase/mcp-server-neon)
+**Package:** [`@neondatabase/mcp-server-neon`](https://www.npmjs.com/package/@neondatabase/mcp-server-neon) (npm)
+**Docs:** [Neon MCP Server](https://neon.com/docs/ai/neon-mcp-server)
+
+### Prerequisites
+
+- **Node.js 18+** and npm (provides the `npx` command) — only needed for the local stdio package
+- A **Neon account** at [neon.tech](https://neon.tech)
+
+### Connection modes
+
+The Neon MCP server can be used in two ways:
+
+1. **Remote (recommended)** — connect to the hosted server at `https://mcp.neon.tech/mcp` via Streamable HTTP (or `https://mcp.neon.tech/sse` via SSE, deprecated). Supports OAuth browser-based authorization or API key auth via the `Authorization` header.
+
+2. **Local** — run the npm package `@neondatabase/mcp-server-neon` locally via `npx`. Requires a Neon API key passed as a CLI argument. Set `NEON_API_KEY` in your shell so `mcp.json` can substitute it into the args array.
+
+### API key setup
+
+1. Log in to the [Neon Console](https://console.neon.tech)
+2. Go to **Account Settings > API Keys**
+3. Click **Generate new API key**, copy the value
+4. Set it as `NEON_API_KEY` in your environment or pass it directly to the CLI
+
+### Environment variables
+
+| Variable | Required | Description |
+|---|---|---|
+| `NEON_API_KEY` | Yes (local) / No (remote with OAuth) | Neon API key. The local server reads this as a CLI argument, not an env var — set it in your shell so `mcp.json` can substitute it into the args array. |
+
+### Read-only mode
+
+Add the `x-read-only: true` header (remote) to restrict the server to safe, read-only operations. This is useful for production environments where you want to prevent accidental modifications.
+
+### Verify setup
+
+```bash
+# Confirm Node.js is available (for local mode)
+node --version  # should be v18 or newer
+
+# Confirm your API key works
+curl -s -H "Authorization: Bearer $NEON_API_KEY" https://console.neon.tech/api/v2/projects | head -c 200
+```
+
+If the curl command returns project data, the API key is valid and the server will work.
+
+---
+
+## com.langfuse/langfuse
+
+**Server:** `com.langfuse/langfuse`
+**Docs:** [Langfuse MCP Server](https://langfuse.com/docs/api-and-data-platform/features/mcp-server)
+**Repository:** [langfuse/langfuse](https://github.com/langfuse/langfuse)
+
+### How it works
+
+The Langfuse MCP server is a remote cloud-hosted service. You connect to it directly via streamable HTTP at `https://<host>/api/public/mcp`, authenticating with a base64-encoded API key pair in the `Authorization` header.
+
+### Prerequisites
+
+- A **Langfuse** account (cloud or self-hosted)
+- A **project-scoped API key pair** (public key `pk-lf-...` and secret key `sk-lf-...`)
+
+### API key setup
+
+1. Log in to your Langfuse instance
+2. Go to **Settings > API Keys**
+3. Create a new API key pair — you'll get a public key (`pk-lf-...`) and secret key (`sk-lf-...`)
+4. Base64-encode the key pair:
+   ```bash
+   echo -n 'pk-lf-YOUR_PUBLIC_KEY:sk-lf-YOUR_SECRET_KEY' | base64
+   ```
+5. Use the base64 output as `LANGFUSE_API_CREDENTIALS`
+
+### Endpoints by region
+
+| Region | Host |
+|---|---|
+| EU (default) | `cloud.langfuse.com` |
+| US | `us.cloud.langfuse.com` |
+| HIPAA | `hipaa.cloud.langfuse.com` |
+| Self-hosted | Your domain (e.g., `langfuse.example.com`) |
+
+### Environment variables
+
+| Variable | Required | Description |
+|---|---|---|
+| `LANGFUSE_API_CREDENTIALS` | Yes | Base64-encoded API key pair (`pk-lf-...:sk-lf-...`) |
+| `LANGFUSE_HOST` | No | Langfuse hostname (default: `cloud.langfuse.com`) |
+
+### Changing regions
+
+The `mcp.json` entry defaults to the EU endpoint (`cloud.langfuse.com`). To use a different region or a self-hosted instance, change the `url` in `mcp-servers/mcp.json` to match your host (see the table above).
+
+### Verify setup
+
+```bash
+# Confirm API credentials are valid
+curl -s -o /dev/null -w "%{http_code}" \
+  -H "Authorization: Basic $LANGFUSE_API_CREDENTIALS" \
+  "https://${LANGFUSE_HOST:-cloud.langfuse.com}/api/public/mcp"
+```
+
+A `200` or `405` response confirms the credentials are valid and the endpoint is reachable.
+
+---
+
 ## com.inngest/inngest-dev
 
 **Server:** `com.inngest/inngest-dev`

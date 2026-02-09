@@ -880,6 +880,141 @@
   },
   {
     "$schema": "https://raw.githubusercontent.com/modelcontextprotocol/static/main/schemas/2025-12-11/server.schema.json",
+    "name": "io.github.neondatabase/mcp-server-neon",
+    "title": "Neon Postgres",
+    "description": "Manage Neon Postgres projects, branches, databases, and run SQL queries via natural language.",
+    "version": "0.6.5",
+    "websiteUrl": "https://neon.com/docs/ai/neon-mcp-server",
+    "repository": {
+      "url": "https://github.com/neondatabase/mcp-server-neon",
+      "source": "github",
+      "id": "896203400"
+    },
+    "packages": [
+      {
+        "registryType": "npm",
+        "identifier": "@neondatabase/mcp-server-neon",
+        "version": "0.6.5",
+        "runtimeHint": "npx",
+        "transport": {
+          "type": "stdio"
+        },
+        "packageArguments": [
+          {
+            "type": "positional",
+            "value": "start",
+            "description": "Start the MCP server in stdio mode"
+          },
+          {
+            "type": "positional",
+            "valueHint": "neon_api_key",
+            "description": "Neon API key for authenticating API requests.",
+            "isRequired": true,
+            "isSecret": true
+          }
+        ]
+      }
+    ],
+    "remotes": [
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.neon.tech/mcp",
+        "headers": [
+          {
+            "name": "Authorization",
+            "description": "Bearer token for API key authentication. Required when not using OAuth.",
+            "isRequired": false,
+            "isSecret": true,
+            "value": "Bearer {neon_api_key}",
+            "variables": {
+              "neon_api_key": {
+                "description": "Neon API key.",
+                "isRequired": true,
+                "isSecret": true
+              }
+            }
+          },
+          {
+            "name": "x-read-only",
+            "description": "Set to 'true' to restrict the server to read-only operations for safe querying.",
+            "isRequired": false,
+            "default": "false"
+          }
+        ]
+      },
+      {
+        "type": "sse",
+        "url": "https://mcp.neon.tech/sse",
+        "headers": [
+          {
+            "name": "Authorization",
+            "description": "Bearer token for API key authentication (deprecated — prefer streamable-http). Required when not using OAuth.",
+            "isRequired": false,
+            "isSecret": true,
+            "value": "Bearer {neon_api_key}",
+            "variables": {
+              "neon_api_key": {
+                "description": "Neon API key.",
+                "isRequired": true,
+                "isSecret": true
+              }
+            }
+          },
+          {
+            "name": "x-read-only",
+            "description": "Set to 'true' to restrict the server to read-only operations for safe querying.",
+            "isRequired": false,
+            "default": "false"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "$schema": "https://raw.githubusercontent.com/modelcontextprotocol/static/main/schemas/2025-12-11/server.schema.json",
+    "name": "com.langfuse/langfuse",
+    "title": "Langfuse",
+    "description": "Manage Langfuse prompts: list, fetch, create, and label prompt versions via the Langfuse API.",
+    "version": "3.152.0",
+    "websiteUrl": "https://langfuse.com/docs/api-and-data-platform/features/mcp-server",
+    "repository": {
+      "url": "https://github.com/langfuse/langfuse",
+      "source": "github",
+      "id": "642497346"
+    },
+    "remotes": [
+      {
+        "type": "streamable-http",
+        "url": "https://{langfuse_host}/api/public/mcp",
+        "headers": [
+          {
+            "name": "Authorization",
+            "description": "Basic auth header using base64-encoded Langfuse API key pair (pk-lf-...:sk-lf-...).",
+            "isRequired": true,
+            "isSecret": true,
+            "value": "Basic {langfuse_api_credentials}",
+            "variables": {
+              "langfuse_api_credentials": {
+                "description": "Base64-encoded Langfuse API key pair in the format pk-lf-...:sk-lf-... (e.g., run: echo -n 'pk-lf-XXX:sk-lf-XXX' | base64).",
+                "isRequired": true,
+                "isSecret": true
+              }
+            }
+          }
+        ],
+        "variables": {
+          "langfuse_host": {
+            "description": "Langfuse instance hostname. Use cloud.langfuse.com (EU), us.cloud.langfuse.com (US), hipaa.cloud.langfuse.com (HIPAA), or your self-hosted domain.",
+            "default": "cloud.langfuse.com",
+            "isRequired": true,
+            "placeholder": "cloud.langfuse.com"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "$schema": "https://raw.githubusercontent.com/modelcontextprotocol/static/main/schemas/2025-12-11/server.schema.json",
     "name": "com.inngest/inngest-dev",
     "title": "Inngest Dev Server",
     "description": "Local Inngest dev server providing function management, event triggering, and documentation access.",
