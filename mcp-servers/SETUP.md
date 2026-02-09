@@ -523,6 +523,45 @@ All flags are optional. Key flags include:
 | `--no-usage-statistics` | Disable Google usage statistics |
 | `--no-performance-crux` | Disable CrUX API calls |
 
+### Remote debugging setup (for `chrome-devtools-remote`)
+
+The `chrome-devtools-remote` mcp.json entry uses `--autoConnect` to attach to a Chrome instance that is already running with remote debugging enabled.
+
+**Launching Chrome with remote debugging:**
+
+```bash
+# macOS
+/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --remote-debugging-port=9222
+
+# Linux
+google-chrome --remote-debugging-port=9222
+
+# Windows
+"C:\Program Files\Google\Chrome\Application\chrome.exe" --remote-debugging-port=9222
+```
+
+You can also enable remote debugging from `chrome://flags` or by adding `--remote-debugging-port=9222` to your Chrome desktop shortcut.
+
+Once Chrome is running with remote debugging, the `--autoConnect` flag will automatically discover and connect to it (requires Chrome 144+). For older Chrome versions, use `--browserUrl http://localhost:9222` instead.
+
+### Puppeteer dependencies (headless / Linux servers)
+
+The `chrome-devtools-headless` entry launches its own Chrome instance via Puppeteer. On headless Linux servers or CI environments, Chromium may need system-level dependencies:
+
+```bash
+# Debian/Ubuntu — install Chromium dependencies
+sudo apt-get update && sudo apt-get install -y \
+  ca-certificates fonts-liberation libasound2 libatk-bridge2.0-0 \
+  libatk1.0-0 libcups2 libdbus-1-3 libdrm2 libgbm1 libgtk-3-0 \
+  libnspr4 libnss3 libx11-xcb1 libxcomposite1 libxdamage1 \
+  libxrandr2 xdg-utils
+
+# Or install Chromium directly (npx will download its own, but system deps are still needed)
+sudo apt-get install -y chromium-browser
+```
+
+On macOS and Windows with Chrome already installed, no extra dependencies are needed.
+
 ### Verify setup
 
 ```bash
