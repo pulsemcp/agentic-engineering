@@ -200,19 +200,23 @@
       "${NEON_API_KEY}"
     ]
   },
-  "neon-remote": {
-    "title": "Neon Postgres (Remote)",
-    "description": "Use when you need to manage Neon Postgres databases via the hosted remote server. Create and manage projects, branches, and databases, run SQL queries, and perform branch-based migrations. Authenticates with a Neon API key.",
+  "neon-remote-ro": {
+    "title": "Neon Postgres (Remote, Read-Only)",
+    "description": "Use when you need to safely inspect Neon Postgres databases. Run SQL queries, list projects and branches, check schemas, and analyze performance without risk of accidental modifications.",
+    "type": "streamable-http",
+    "url": "https://mcp.neon.tech/mcp",
+    "headers": {
+      "Authorization": "Bearer ${NEON_API_KEY}",
+      "x-read-only": "true"
+    }
+  },
+  "neon-remote-rw": {
+    "title": "Neon Postgres (Remote, Read-Write)",
+    "description": "Use when you need to manage Neon Postgres databases. Create and manage projects, branches, and databases, run SQL queries, and perform branch-based migrations.",
     "type": "streamable-http",
     "url": "https://mcp.neon.tech/mcp",
     "headers": {
       "Authorization": "Bearer ${NEON_API_KEY}"
     }
-  },
-  "neon-remote-oauth": {
-    "title": "Neon Postgres (Remote, OAuth)",
-    "description": "Use when you need to manage Neon Postgres databases via the hosted remote server with browser-based OAuth login. No API key required — authenticates via your MCP client's OAuth flow.",
-    "type": "streamable-http",
-    "url": "https://mcp.neon.tech/mcp"
   }
 }
