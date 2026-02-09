@@ -549,3 +549,37 @@ google-chrome --version || chromium-browser --version
 ```
 
 If both commands return versions, the server will work.
+
+---
+
+## com.inngest/inngest-dev
+
+**Server:** `com.inngest/inngest-dev`
+**Repository:** [inngest/inngest](https://github.com/inngest/inngest)
+**Package:** [`inngest-cli`](https://www.npmjs.com/package/inngest-cli) (npm)
+**Docs:** [Inngest MCP](https://www.inngest.com/docs/ai-dev-tools/mcp)
+
+### How it works
+
+The Inngest MCP server is embedded in the Inngest dev server. When you start the dev server with `npx inngest-cli dev`, it exposes an MCP endpoint at `http://127.0.0.1:8288/mcp` using streamable HTTP transport. No external dependencies, API keys, or internet connection are required.
+
+### Prerequisites
+
+- **Node.js 18+** and npm (provides the `npx` command)
+- An **Inngest project** with functions you want to manage (the dev server discovers functions from your local app)
+
+### Environment variables
+
+No environment variables are required — the dev server runs entirely locally.
+
+### Verify setup
+
+```bash
+# Start the Inngest dev server
+npx --ignore-scripts=false inngest-cli@latest dev
+
+# In another terminal, confirm the MCP endpoint is accessible
+curl -s http://127.0.0.1:8288/mcp
+```
+
+If the dev server starts without errors and the endpoint responds, the MCP server is working.
