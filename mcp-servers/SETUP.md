@@ -594,6 +594,10 @@ The Langfuse MCP server is a remote cloud-hosted service. You connect to it dire
 | `LANGFUSE_API_CREDENTIALS` | Yes | Base64-encoded API key pair (`pk-lf-...:sk-lf-...`) |
 | `LANGFUSE_HOST` | No | Langfuse hostname (default: `cloud.langfuse.com`) |
 
+### Changing regions
+
+The `mcp.json` entry defaults to the EU endpoint (`cloud.langfuse.com`). To use a different region or a self-hosted instance, change the `url` in `mcp-servers/mcp.json` to match your host (see the table above).
+
 ### Verify setup
 
 ```bash
