@@ -913,6 +913,15 @@
             "type": "positional",
             "value": "dev",
             "description": "Start the Inngest dev server with MCP endpoint."
+          },
+          {
+            "type": "named",
+            "name": "--port",
+            "description": "Port for the Inngest dev server (default: 8288). The MCP endpoint URL changes accordingly.",
+            "isRequired": false,
+            "default": "8288",
+            "format": "number",
+            "valueHint": "port"
           }
         ]
       }

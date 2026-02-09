@@ -563,10 +563,22 @@ If both commands return versions, the server will work.
 
 The Inngest MCP server is embedded in the Inngest dev server. When you start the dev server with `npx inngest-cli dev`, it exposes an MCP endpoint at `http://127.0.0.1:8288/mcp` using streamable HTTP transport. No external dependencies, API keys, or internet connection are required.
 
+The `--ignore-scripts=false` flag is required because `inngest-cli` is an npm wrapper that downloads the platform-specific Inngest Go binary during its postinstall script. Without it, the CLI binary won't be available.
+
 ### Prerequisites
 
 - **Node.js 18+** and npm (provides the `npx` command)
 - An **Inngest project** with functions you want to manage (the dev server discovers functions from your local app)
+
+### Port configuration
+
+The dev server listens on port `8288` by default. Use `--port` / `-p` to change it:
+
+```bash
+npx -y --ignore-scripts=false inngest-cli@1.16.3 dev --port 9000
+```
+
+If you change the port, update the MCP client URL accordingly (e.g., `http://127.0.0.1:9000/mcp`).
 
 ### Environment variables
 
@@ -576,10 +588,10 @@ No environment variables are required — the dev server runs entirely locally.
 
 ```bash
 # Start the Inngest dev server
-npx --ignore-scripts=false inngest-cli@latest dev
+npx -y --ignore-scripts=false inngest-cli@1.16.3 dev
 
-# In another terminal, confirm the MCP endpoint is accessible
-curl -s http://127.0.0.1:8288/mcp
+# In another terminal, confirm the server is listening
+curl -s -o /dev/null -w "%{http_code}" http://127.0.0.1:8288/mcp
 ```
 
-If the dev server starts without errors and the endpoint responds, the MCP server is working.
+If the dev server starts without errors and curl returns an HTTP status code, the MCP server is running.
