@@ -198,10 +198,7 @@
       "@neondatabase/mcp-server-neon@0.6.5",
       "start",
       "${NEON_API_KEY}"
-    ],
-    "env": {
-      "NEON_API_KEY": "${NEON_API_KEY}"
-    }
+    ]
   },
   "neon-remote": {
     "title": "Neon Postgres (Remote)",
