@@ -483,3 +483,54 @@ aws s3 ls
 ```
 
 If both commands succeed, the server will work.
+
+---
+
+## io.github.ChromeDevTools/chrome-devtools-mcp
+
+**Server:** `io.github.ChromeDevTools/chrome-devtools-mcp`
+**Repository:** [ChromeDevTools/chrome-devtools-mcp](https://github.com/ChromeDevTools/chrome-devtools-mcp)
+**Package:** [`chrome-devtools-mcp`](https://www.npmjs.com/package/chrome-devtools-mcp) (npm)
+
+### Prerequisites
+
+- **Node.js v20.19+** (latest maintenance LTS) and npm (provides the `npx` command)
+- **Chrome** current stable version or newer
+
+### Environment variables
+
+| Variable | Required | Description |
+|---|---|---|
+| `CHROME_DEVTOOLS_MCP_NO_USAGE_STATISTICS` | No | Set to disable Google usage statistics collection |
+| `CI` | No | When set, also disables usage statistics |
+
+No credentials or API keys are required — the server controls a local Chrome browser.
+
+### Configuration flags
+
+All flags are optional. Key flags include:
+
+| Flag | Description |
+|---|---|
+| `--headless` | Run Chrome in headless mode |
+| `--browserUrl` | Connect to a running debuggable Chrome instance |
+| `--wsEndpoint` | WebSocket endpoint for Chrome connection |
+| `--autoConnect` | Auto-connect to running Chrome (Chrome 144+) |
+| `--isolated` | Temporary user-data-dir, auto-cleaned on close |
+| `--channel` | Chrome channel: stable, canary, beta, dev |
+| `--viewport` | Initial viewport size (e.g., 1280x720) |
+| `--proxyServer` | Proxy server URL |
+| `--no-usage-statistics` | Disable Google usage statistics |
+| `--no-performance-crux` | Disable CrUX API calls |
+
+### Verify setup
+
+```bash
+# Confirm Node.js version is sufficient
+node --version  # should be v20.19.0 or newer
+
+# Confirm Chrome is installed
+google-chrome --version || chromium --version
+```
+
+If both commands return versions, the server will work.
