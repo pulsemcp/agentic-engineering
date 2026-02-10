@@ -1018,7 +1018,7 @@
     "name": "io.github.pulsemcp/vercel",
     "title": "Vercel",
     "description": "Vercel deployment management, runtime logs, and project monitoring with tool access control.",
-    "version": "0.0.0",
+    "version": "0.1.0",
     "websiteUrl": "https://github.com/pulsemcp/mcp-servers/tree/main/experimental/vercel",
     "repository": {
       "url": "https://github.com/pulsemcp/mcp-servers",
@@ -1030,7 +1030,7 @@
       {
         "registryType": "npm",
         "identifier": "vercel-platform-mcp-server",
-        "version": "0.0.0",
+        "version": "0.1.0",
         "runtimeHint": "npx",
         "transport": {
           "type": "stdio"
