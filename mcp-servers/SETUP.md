@@ -768,3 +768,66 @@ curl -s -o /dev/null -w "%{http_code}" \
 ```
 
 A `200` response confirms the credentials are valid and the server will work.
+
+---
+
+## io.github.getsentry/sentry-mcp
+
+**Server:** `io.github.getsentry/sentry-mcp`
+**Repository:** [getsentry/sentry-mcp](https://github.com/getsentry/sentry-mcp) (subfolder `packages/mcp-server`)
+**Package:** [`@sentry/mcp-server`](https://www.npmjs.com/package/@sentry/mcp-server) (npm)
+**Docs:** [Sentry MCP Server](https://docs.sentry.io/product/sentry-mcp/)
+
+### How it works
+
+The Sentry MCP server can be used in two ways:
+
+1. **Remote (recommended)** — connect to the hosted server at `https://mcp.sentry.dev/mcp` via Streamable HTTP (or `https://mcp.sentry.dev/sse` via SSE, deprecated). Uses OAuth browser-based authorization — no API keys needed in your configuration.
+
+2. **Local** — run the npm package `@sentry/mcp-server` locally via `npx`. Requires a Sentry User Auth Token passed as the `SENTRY_ACCESS_TOKEN` environment variable.
+
+### Prerequisites
+
+- A **Sentry account** at [sentry.io](https://sentry.io)
+- **Node.js 18+** and npm (provides the `npx` command) — only needed for local stdio mode
+
+### Connection modes
+
+#### Remote (OAuth)
+
+The `mcp.json` entry for `sentry` uses the remote Streamable HTTP endpoint with OAuth. When your MCP client connects, it will open a browser window for Sentry OAuth authorization. No manual token setup is required.
+
+#### Local (token-based)
+
+For local stdio mode, you need a Sentry User Auth Token:
+
+1. Log in to [sentry.io](https://sentry.io)
+2. Go to **Settings > Auth Tokens** (or visit [sentry.io/settings/auth-tokens](https://sentry.io/settings/auth-tokens/))
+3. Click **Create New Token**
+4. Select the following scopes: `org:read`, `project:read`, `project:write`, `team:read`, `team:write`, `event:write`
+5. Copy the token — this is your `SENTRY_ACCESS_TOKEN` value
+
+### Self-hosted Sentry
+
+If you use a self-hosted Sentry instance, set `SENTRY_HOST` to your instance hostname (e.g., `sentry.example.com`). This only applies to the local stdio mode — the remote endpoint always connects to Sentry SaaS.
+
+### Environment variables
+
+| Variable | Required | Description |
+|---|---|---|
+| `SENTRY_ACCESS_TOKEN` | Yes (local only) | Sentry User Auth Token with org:read, project:read, project:write, team:read, team:write, and event:write scopes |
+| `SENTRY_HOST` | No | Sentry instance hostname for self-hosted installations (local mode only) |
+
+### Verify setup
+
+```bash
+# Remote mode: confirm the OAuth endpoint is reachable
+curl -s -o /dev/null -w "%{http_code}" https://mcp.sentry.dev/mcp
+# Expect 401 or 405 (auth required, but endpoint is live)
+
+# Local mode: confirm your token works
+curl -s -H "Authorization: Bearer $SENTRY_ACCESS_TOKEN" \
+  https://sentry.io/api/0/organizations/ | head -c 200
+```
+
+If the remote curl returns a status code and the local curl returns organization data, the server will work.

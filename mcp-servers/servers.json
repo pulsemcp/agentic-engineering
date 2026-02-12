@@ -1104,5 +1104,54 @@
         ]
       }
     ]
+  },
+  {
+    "$schema": "https://raw.githubusercontent.com/modelcontextprotocol/static/main/schemas/2025-12-11/server.schema.json",
+    "name": "io.github.getsentry/sentry-mcp",
+    "title": "Sentry",
+    "description": "Retrieve and investigate Sentry issues, errors, and performance data with AI-powered search.",
+    "version": "0.29.0",
+    "websiteUrl": "https://docs.sentry.io/product/sentry-mcp/",
+    "repository": {
+      "url": "https://github.com/getsentry/sentry-mcp",
+      "source": "github",
+      "id": "957245447",
+      "subfolder": "packages/mcp-server"
+    },
+    "packages": [
+      {
+        "registryType": "npm",
+        "identifier": "@sentry/mcp-server",
+        "version": "0.29.0",
+        "runtimeHint": "npx",
+        "transport": {
+          "type": "stdio"
+        },
+        "environmentVariables": [
+          {
+            "name": "SENTRY_ACCESS_TOKEN",
+            "description": "Sentry User Auth Token with org:read, project:read, project:write, team:read, team:write, and event:write scopes.",
+            "isRequired": true,
+            "isSecret": true
+          },
+          {
+            "name": "SENTRY_HOST",
+            "description": "Sentry instance hostname for self-hosted installations.",
+            "isRequired": false,
+            "placeholder": "sentry.example.com"
+          }
+        ]
+      }
+    ],
+    "remotes": [
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.sentry.dev/mcp"
+      },
+      {
+        "type": "sse",
+        "url": "https://mcp.sentry.dev/sse"
+      }
+    ]
   }
 ]

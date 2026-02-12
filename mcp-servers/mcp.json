@@ -253,5 +253,11 @@
       "LANGFUSE_PUBLIC_KEY": "${LANGFUSE_PUBLIC_KEY}",
       "LANGFUSE_BASE_URL": "${LANGFUSE_BASE_URL}"
     }
+  },
+  "sentry": {
+    "title": "Sentry",
+    "description": "Use when investigating application errors and performance issues. Search Sentry issues, inspect error details and stack traces, analyze root causes with Seer AI, and monitor releases and deployments.",
+    "type": "streamable-http",
+    "url": "https://mcp.sentry.dev/mcp"
   }
 }
