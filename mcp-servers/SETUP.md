@@ -802,7 +802,7 @@ The `mcp.json` entry for `sentry` uses the remote Streamable HTTP endpoint with 
 For local stdio mode, you need a Sentry User Auth Token:
 
 1. Log in to [sentry.io](https://sentry.io)
-2. Go to **Settings > Auth Tokens** (or visit [sentry.io/settings/auth-tokens](https://sentry.io/settings/auth-tokens/))
+2. Go to **Settings > Account > API > Auth Tokens** (or visit [sentry.io/settings/account/api/auth-tokens](https://sentry.io/settings/account/api/auth-tokens/))
 3. Click **Create New Token**
 4. Select the following scopes: `org:read`, `project:read`, `project:write`, `team:read`, `team:write`, `event:write`
 5. Copy the token — this is your `SENTRY_ACCESS_TOKEN` value

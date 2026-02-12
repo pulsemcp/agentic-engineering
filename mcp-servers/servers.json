@@ -1138,6 +1138,7 @@
             "name": "SENTRY_HOST",
             "description": "Sentry instance hostname for self-hosted installations.",
             "isRequired": false,
+            "default": "sentry.io",
             "placeholder": "sentry.example.com"
           }
         ]
